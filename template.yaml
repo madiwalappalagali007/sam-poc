@@ -36,7 +36,7 @@ Resources:
   lambdaauthorizercodeproarch1:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: proarch-bucket1
+      BucketName: pro-arch-new
 #  MyObject:
 #   Type: AWS::S3::BucketObject
 #   Properties:
@@ -97,7 +97,7 @@ Resources:
   BasicAuthorizerFunction:    #lambda authorizer for apigateway root url of Cloud Front Distribution
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://proarch-bucket1/index.zip
+      CodeUri: s3://pro-arch-new/index.zip
       Handler: index.handler
       Runtime: nodejs18.x
 
@@ -231,13 +231,13 @@ Resources:
     Properties:
       Command:
         Name: glueetl
-        ScriptLocation: s3://proarch-bucket1/data.json
+        ScriptLocation: s3://sam-bucket-proarch/data.json
       DefaultArguments:
         --TempDir: s3://my-temp-dir
       ExecutionProperty:
         MaxConcurrentRuns: 1
       MaxRetries: 3
-      Name:  proarch-etljob-new
+      Name:  proarch-etljob-new007
       Role: arn:aws:iam::753148611660:role/GlueServiceRole
       Timeout: 2880
       GlueVersion: '2.0'
@@ -253,12 +253,12 @@ Resources:
   ETLS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: targetbucket1-proarch
+      BucketName: targetbucket1-proarch-123
 
   ETLLambda:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://proarch-bucket1/lambda.zip
+      CodeUri: s3://sam-bucket2-proarch/lambda.zip
       Handler: index.handler
       Runtime: python3.8
       Timeout: 30
